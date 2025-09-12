@@ -14,6 +14,11 @@ import lombok.*;
 @Builder
 public class UsuarioCreateDto {
 
+    /**
+     * ToDo
+     *
+     */
+
     /** Nombre. Obligatorio. */
     @NotBlank
     @Size(max = 100)
@@ -28,6 +33,9 @@ public class UsuarioCreateDto {
     @NotBlank
     @Size(min = 8, max = 255)
     private String password;
+
+    @NotBlank
+    private Boolean activo;
 
     /** Rol opcional; si no viene se usa USER. */
     private Rol rol;

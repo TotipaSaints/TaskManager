@@ -48,11 +48,11 @@ public class Usuario {
     /** Rol del usuario en la aplicación. */
     @Enumerated(EnumType.STRING)
     @Column(name = "rol", nullable = false, length = 20)
-    private Rol rol = Rol.USER;
+    private Rol rol;
 
     /** Indica si el usuario está activo. */
-    @Column(nullable = false)
-    private Boolean activo = Boolean.TRUE;
+    @Column(nullable = true)
+    private Boolean activo;
 
     /** Fecha de creación del usuario (timestamptz). */
     @Column(name = "fecha_creacion", nullable = false, updatable = false)

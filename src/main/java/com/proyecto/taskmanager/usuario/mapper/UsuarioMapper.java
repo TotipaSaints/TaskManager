@@ -32,6 +32,7 @@ public class UsuarioMapper {
         Usuario.UsuarioBuilder builder = Usuario.builder()
                 .nombre(dto.getNombre())
                 .email(dto.getEmail())
+                .activo(dto.getActivo())
                 .password(hashed)
                 .activo(true);
 

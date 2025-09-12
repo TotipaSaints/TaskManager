@@ -56,7 +56,7 @@ public class Tarea {
      * Marca si la tarea está completada.
      */
     @Column(nullable = false)
-    private Boolean completada = Boolean.FALSE;
+    private Boolean completada;
 
     /**
      * Proyecto al que pertenece (puede ser null).
