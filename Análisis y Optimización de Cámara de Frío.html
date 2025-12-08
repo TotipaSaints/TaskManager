@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<!-- saved from url=(0051)file:///C:/Users/Totipa/Downloads/presentation.html -->
+<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análisis y Optimización de Cámara de Frío</title>
+    <style>
+        /* Theme Variables */
+        :root {
+            --font-family-display: Arial, sans-serif;
+            --font-weight-display: 600;
+            --font-family-content: Arial, sans-serif;
+            --font-weight-content: 400;
+            --font-size-content: 16px;
+            --line-height-content: 1.4;
+        }
+
+        /* DARK THEME */
+        body.theme-dark {
+            --color-bg-base: #0f172a;
+            --color-bg-elevated: #020617;
+            --color-bg-surface: #1e293b;
+            --color-bg-muted: #334155;
+            --color-text-primary: #f1f5f9;
+            --color-text-secondary: #cbd5e1;
+            --color-text-muted: #94a3b8;
+            --color-text-accent: #38bdf8;
+            --color-primary: #38bdf8;
+            --color-primary-foreground: #0f172a;
+        }
+
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family-content);
+            font-weight: var(--font-weight-content);
+            font-size: var(--font-size-content);
+            line-height: var(--line-height-content);
+            overflow-x: hidden;
+        }
+
+        /* Slide Container */
+        .slide {
+            width: 960px;
+            height: 540px;
+            margin: 0 auto 20px;
+            display: flex;
+            flex-shrink: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Layout Utilities */
+        .row { flex-direction: row; }
+        .col { flex-direction: column; }
+        .center {
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .space-between { justify-content: space-between; }
+        .items-center { align-items: center; }
+        .items-start { align-items: flex-start; }
+        .items-end { align-items: flex-end; }
+        .fill-width { flex: 1; }
+        .fill-height { flex: 1; display: flex; flex-direction: column; }
+
+        /* Spacing */
+        .gap-lg { gap: 1.5rem; }
+        .gap-xl { gap: 2rem; }
+
+        .p-4 { padding: 1rem; }
+        .p-8 { padding: 2rem; }
+        .p-16 { padding: 4rem; }
+
+        .mb-2 { margin-bottom: 0.5rem; }
+        .mb-4 { margin-bottom: 1rem; }
+        .mb-6 { margin-bottom: 1.5rem; }
+        .mb-8 { margin-bottom: 2rem; }
+
+        .mt-4 { margin-top: 1rem; }
+        .mt-8 { margin-top: 2rem; }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-family-display);
+            font-weight: var(--font-weight-display);
+            line-height: 1.2;
+            margin: 0;
+        }
+
+        h1 { font-size: 3rem; }
+        h2 { font-size: 2.25rem; }
+        h3 { font-size: 1.75rem; }
+        h4 { font-size: 1.5rem; }
+
+        .text-6xl { font-size: 3.75rem; }
+        .text-5xl { font-size: 3rem; }
+        .text-4xl { font-size: 2.25rem; }
+        .text-2xl { font-size: 1.5rem; }
+        .text-xl { font-size: 1.25rem; }
+        .text-lg { font-size: 1.125rem; }
+        .text-base { font-size: 1rem; }
+        .text-sm { font-size: 0.875rem; }
+        .text-xs { font-size: 0.75rem; }
+
+        .font-bold { font-weight: 700; }
+        .font-semibold { font-weight: 600; }
+        .font-normal { font-weight: 400; }
+
+        .text-center { text-align: center; }
+        .text-left { text-align: left; }
+
+        .opacity-80 { opacity: 0.8; }
+        .opacity-70 { opacity: 0.7; }
+
+        /* Lists */
+        ul, ol {
+            margin-left: 2rem;
+            line-height: 1.8;
+        }
+
+        ul li { list-style: disc; }
+        li { margin-bottom: 0.75rem; }
+        li:last-child { margin-bottom: 0; }
+
+        /* Card Styles */
+        .card-rect {
+            padding: 1.5rem;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .source-link {
+            color: #38bdf8;
+            text-decoration: underline;
+            font-size: 0.75rem;
+        }
+    </style>
+</head>
+<body class="theme-dark">
+
+    <!-- SLIDE 1: PORTADA CON 7 ELEMENTOS DE IDENTIFICACIÓN -->
+    <section class="slide p-16 col center" style="background-color: #020617; color: #f1f5f9;">
+        <h1 class="text-5xl mb-2" style="color: #38bdf8;">Análisis y Optimización de Cámara de Frío</h1>
+        <h2 class="text-2xl mb-6" style="color: #cbd5e1;">Aplicación de Números Complejos en Refrigeración</h2>
+        <div style="border-top: 2px solid #38bdf8; border-bottom: 2px solid #38bdf8; padding: 1.5rem; margin: 1.5rem 0; width: 100%; max-width: 600px;">
+            <p class="text-sm mb-3" style="color: #94a3b8;"><strong style="color: #38bdf8;">Integrantes:</strong> Juan • Leonardo • Eduardo • Rodrigo</p>
+            <p class="text-sm mb-3" style="color: #94a3b8;"><strong style="color: #38bdf8;">Profesor:</strong> José Muñoz</p>
+            <p class="text-sm mb-3" style="color: #94a3b8;"><strong style="color: #38bdf8;">Asignatura:</strong> Taller de Formación Libre (TFL)</p>
+            <p class="text-sm mb-3" style="color: #94a3b8;"><strong style="color: #38bdf8;">Carrera:</strong> Ingeniería en Climatización y Refrigeración</p>
+            <p class="text-sm" style="color: #94a3b8;"><strong style="color: #38bdf8;">Período:</strong> 18 de Noviembre - 9 de Diciembre 2025</p>
+        </div>
+    </section>
+
+    <!-- SLIDE 2: CONTEXTO Y PROBLEMÁTICA -->
+    <section class="slide p-16 col" style="background-color: #0f172a; color: #f1f5f9;">
+        <h2 class="mb-6" style="color: #38bdf8;">Contexto y Problemática</h2>
+        <div class="fill-height">
+            <h3 class="mb-4" style="color: #cbd5e1; font-size: 1.25rem;">Contexto</h3>
+            <ul class="text-lg" style="color: #cbd5e1; margin-bottom: 1.5rem;">
+                <li>Cámara de refrigeración operada 24/7 a 5°C</li>
+                <li>5 aperturas diarias para acceso de personal</li>
+                <li>Máximo 2 personas por apertura</li>
+            </ul>
+            <h3 class="mb-4" style="color: #cbd5e1; font-size: 1.25rem;">Problemática</h3>
+            <ul class="text-lg" style="color: #cbd5e1;">
+                <li>Variaciones térmicas significativas por infiltración de aire</li>
+                <li>Mayor trabajo del compresor → consumo energético elevado</li>
+                <li>Impacto económico y ambiental del sobreconsumo</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- SLIDE 3: OBJETIVO GENERAL Y PREGUNTAS DE INVESTIGACIÓN -->
+    <section class="slide p-16 col" style="background-color: #0f172a; color: #f1f5f9;">
+        <h2 class="mb-6" style="color: #38bdf8;">Objetivo General y Preguntas de Investigación</h2>
+        <div class="fill-height">
+            <div style="background-color: #1e293b; padding: 1rem; margin-bottom: 1.5rem; border-left: 4px solid #38bdf8;">
+                <p class="text-lg" style="color: #cbd5e1;"><strong style="color: #38bdf8;">Objetivo General:</strong></p>
+                <p style="color: #cbd5e1;">Desarrollar un modelo matemático lineal por tramos que describa el comportamiento térmico y eléctrico de una cámara de refrigeración, utilizando números complejos para optimizar el consumo energético.</p>
+            </div>
+            <h3 class="mb-3" style="color: #cbd5e1; font-size: 1.25rem;">Preguntas de Investigación</h3>
+            <ul class="text-lg" style="color: #cbd5e1;">
+                <li>¿Cómo varía la temperatura interior de la cámara de frío en función del tiempo cuando se abre y se cierra la puerta?</li>
+                <li>¿Qué tipo de función se ajusta mejor a la curva de enfriamiento de la cámara después de una apertura de puertas (lineal por tramos)?</li>
+                <li>¿Cómo se relaciona el tiempo de funcionamiento del compresor con el mantenimiento de la temperatura de conservación de los alimentos?</li>
+                <li>¿Cómo se puede representar la potencia de la unidad de la cámara de frío mediante números complejos, usando datos de tensión, corriente y factor de potencia?</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- SLIDE 4: RESPUESTAS A PREGUNTAS DE INVESTIGACIÓN - PARTE 1 -->
+    <section class="slide p-16 col" style="background-color: #0f172a; color: #f1f5f9;">
+        <h2 class="mb-4" style="color: #38bdf8;">Respuestas: Preguntas de Investigación (Parte 1)</h2>
+        <div class="fill-height">
+            <div style="background-color: #1e293b; padding: 0.9rem; margin-bottom: 0.8rem; border-left: 4px solid #38bdf8;">
+                <p style="color: #38bdf8; font-weight: bold; font-size: 0.9rem; margin-bottom: 0.4rem;">P1: ¿Cómo varía la temperatura interior?</p>
+                <p style="color: #cbd5e1; font-size: 0.85rem;"><strong>Respuesta:</strong> Varía linealmente en dos tramos según el modelo desarrollado:</p>
+                <ul style="color: #cbd5e1; font-size: 0.8rem; margin-left: 1.5rem; line-height: 1.5; margin-top: 0.4rem;">
+                    <li><strong style="color: #ef4444;">Puerta Abierta:</strong> T(t) = 5 + 0.4t (aumenta 0.4°C/min por infiltración)</li>
+                    <li><strong style="color: #38bdf8;">Puerta Cerrada:</strong> T(t) = 7 - 0.35t (disminuye 0.35°C/min por compresor)</li>
+                    <li><strong style="color: #10b981;">Ciclo:</strong> Oscilación entre 5°C (set point) y 7°C (máximo antes de compresor)</li>
+                </ul>
+            </div>
+            <div style="background-color: #1e293b; padding: 0.9rem; margin-bottom: 0.8rem; border-left: 4px solid #10b981;">
+                <p style="color: #10b981; font-weight: bold; font-size: 0.9rem; margin-bottom: 0.4rem;">P2: ¿Qué función se ajusta mejor?</p>
+                <p style="color: #cbd5e1; font-size: 0.85rem;"><strong>Respuesta:</strong> El modelo <strong>lineal por tramos (piecewise linear)</strong> es el que mejor se ajusta porque:</p>
+                <ul style="color: #cbd5e1; font-size: 0.8rem; margin-left: 1.5rem; line-height: 1.5; margin-top: 0.4rem;">
+                    <li>Captura transiciones térmicas agudas sin retraso</li>
+                    <li>Evita sobreestimación de exponenciales</li>
+                    <li>Válido para ciclos operacionales cortos (5-15 min)</li>
+                </ul>
+            </div>
+            <div style="background-color: #1e293b; padding: 0.9rem; border-left: 4px solid #f59e0b;">
+                <p style="color: #f59e0b; font-weight: bold; font-size: 0.9rem; margin-bottom: 0.4rem;">P3: ¿Relación tiempo compresor vs. temperatura?</p>
+                <p style="color: #cbd5e1; font-size: 0.85rem;"><strong>Respuesta:</strong> Relación proporcional directa:</p>
+                <ul style="color: #cbd5e1; font-size: 0.8rem; margin-left: 1.5rem; line-height: 1.5; margin-top: 0.4rem;">
+                    <li>Cada °C de aumento requiere ~1.4 min de compresor activo</li>
+                    <li>Una apertura de puerta (Δt = +2°C) = ~5 min de funcionamiento</li>
+                    <li>5 aperturas/día × 5 min = 25 min extra diarios = consumo elevado</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 4B: RESPUESTAS A PREGUNTAS DE INVESTIGACIÓN - PARTE 2 -->
+    <section class="slide p-16 col" style="background-color: #0f172a; color: #f1f5f9;">
+        <h2 class="mb-4" style="color: #38bdf8;">Respuestas: Preguntas de Investigación (Parte 2)</h2>
+        <div class="fill-height">
+            <div style="background-color: #1e293b; padding: 0.9rem; margin-bottom: 0.8rem; border-left: 4px solid #ec4899;">
+                <p style="color: #ec4899; font-weight: bold; font-size: 0.9rem; margin-bottom: 0.4rem;">P4: ¿Representación de potencia con números complejos?</p>
+                <p style="color: #cbd5e1; font-size: 0.8rem; margin-bottom: 0.6rem;">Datos medidos: V = 220V, I = 8A, fp = 0.85</p>
+                <div style="background-color: #0f172a; padding: 0.7rem; margin-bottom: 0.6rem; border-left: 3px solid #38bdf8;">
+                    <p style="color: #cbd5e1; font-size: 0.75rem; margin-bottom: 0.3rem;"><strong style="color: #38bdf8;">Potencia Activa (P):</strong> P = V·I·cos(φ) = 220 × 8 × 0.85 = <strong>1496 W</strong></p>
+                </div>
+                <div style="background-color: #0f172a; padding: 0.7rem; margin-bottom: 0.6rem; border-left: 3px solid #10b981;">
+                    <p style="color: #cbd5e1; font-size: 0.75rem; margin-bottom: 0.3rem;"><strong style="color: #10b981;">Potencia Reactiva (Q):</strong> Q = P·tan(φ) = 1496 × tan(31.8°) = <strong>935 VAR</strong></p>
+                </div>
+                <div style="background-color: #0f172a; padding: 0.7rem; margin-bottom: 0.6rem; border-left: 3px solid #f59e0b;">
+                    <p style="color: #cbd5e1; font-size: 0.75rem; margin-bottom: 0.3rem;"><strong style="color: #f59e0b;">Potencia Aparente (|S|):</strong> |S| = √(P² + Q²) = √(1496² + 935²) = <strong>1754 VA</strong></p>
+                </div>
+                <div style="background-color: #0f172a; padding: 0.7rem; border-left: 3px solid #ec4899;">
+                    <p style="color: #cbd5e1; font-size: 0.75rem;"><strong style="color: #ec4899;">Número Complejo:</strong> S = 1496 + j935 VA = 1754∠32.2° VA</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 4C: METODOLOGÍA - CARTA GANTT -->
+    <section class="slide p-16 col" style="background-color: #0f172a; color: #f1f5f9;">
+        <h2 class="mb-4" style="color: #38bdf8;">Metodología: Trabajo Colaborativo y Cronograma</h2>
+        <div style="display: flex; gap: 1.5rem; height: 100%;">
+            <!-- Distribución de tareas -->
+            <div style="flex: 0 0 35%;">
+                <p class="text-sm mb-3" style="color: #cbd5e1;"><strong>Distribución de Tareas (25% cada integrante):</strong></p>
+                <div style="background-color: #1e293b; padding: 0.8rem; margin-bottom: 0.6rem; border-left: 3px solid #38bdf8;">
+                    <p style="color: #38bdf8; font-weight: bold; font-size: 0.9rem;">Juan</p>
+                    <p style="color: #cbd5e1; font-size: 0.8rem;">Modelo Térmico</p>
+                </div>
+                <div style="background-color: #1e293b; padding: 0.8rem; margin-bottom: 0.6rem; border-left: 3px solid #10b981;">
+                    <p style="color: #10b981; font-weight: bold; font-size: 0.9rem;">Leonardo</p>
+                    <p style="color: #cbd5e1; font-size: 0.8rem;">Análisis Eléctrico</p>
+                </div>
+                <div style="background-color: #1e293b; padding: 0.8rem; margin-bottom: 0.6rem; border-left: 3px solid #f59e0b;">
+                    <p style="color: #f59e0b; font-weight: bold; font-size: 0.9rem;">Eduardo</p>
+                    <p style="color: #cbd5e1; font-size: 0.8rem;">Números Complejos</p>
+                </div>
+                <div style="background-color: #1e293b; padding: 0.8rem; border-left: 3px solid #ec4899;">
+                    <p style="color: #ec4899; font-weight: bold; font-size: 0.9rem;">Rodrigo</p>
+                    <p style="color: #cbd5e1; font-size: 0.8rem;">Presentación</p>
+                </div>
+            </div>
+            <!-- Carta Gantt -->
+            <div style="flex: 1;">
+                <svg viewBox="0 0 400 280" style="width: 100%; height: 100%;">
+                    <!-- Axes -->
+                    <line x1="60" y1="30" x2="60" y2="240" stroke="#cbd5e1" stroke-width="2"></line>
+                    <line x1="60" y1="240" x2="390" y2="240" stroke="#cbd5e1" stroke-width="2"></line>
+                    <!-- Semanas -->
+                    <text x="80" y="260" font-size="10" fill="#94a3b8">S1</text>
+                    <text x="140" y="260" font-size="10" fill="#94a3b8">S2</text>
+                    <text x="200" y="260" font-size="10" fill="#94a3b8">S3</text>
+                    <text x="260" y="260" font-size="10" fill="#94a3b8">S4</text>
+                    <!-- Tareas -->
+                    <text x="5" y="55" font-size="9" fill="#94a3b8">Investigación</text>
+                    <rect x="70" y="45" width="80" height="15" fill="#38bdf8" opacity="0.7"></rect>
+                    <text x="5" y="95" font-size="9" fill="#94a3b8">Desarrollo</text>
+                    <rect x="130" y="85" width="120" height="15" fill="#10b981" opacity="0.7"></rect>
+                    <text x="5" y="135" font-size="9" fill="#94a3b8">Análisis</text>
+                    <rect x="180" y="125" width="100" height="15" fill="#f59e0b" opacity="0.7"></rect>
+                    <text x="5" y="175" font-size="9" fill="#94a3b8">Presentación</text>
+                    <rect x="240" y="165" width="80" height="15" fill="#ec4899" opacity="0.7"></rect>
+                    <!-- Línea de hoy (9 dic) -->
+                    <line x1="340" y1="30" x2="340" y2="240" stroke="#ef4444" stroke-width="2" stroke-dasharray="5,5"></line>
+                    <text x="330" y="260" font-size="10" fill="#ef4444">HOY</text>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 5: JUSTIFICACIÓN DEL PRODUCTO - PARTE 1 -->
+    <section class="slide p-16 col" style="background-color: #0f172a; color: #f1f5f9;">
+        <h2 class="mb-4" style="color: #38bdf8;">Justificación: Modelo Matemático Lineal</h2>
+        <div class="fill-height">
+            <h3 class="mb-3" style="color: #cbd5e1; font-size: 1.1rem;">¿Por qué un modelo lineal por tramos?</h3>
+            <ul class="text-lg" style="color: #cbd5e1; margin-bottom: 1rem;">
+                <li><strong style="color: #38bdf8;">Simplicidad:</strong> Aproximación efectiva del comportamiento real durante ciclos cortos</li>
+                <li><strong style="color: #38bdf8;">Precisión:</strong> Captura transiciones térmicas clave (apertura/cierre puerta)</li>
+                <li><strong style="color: #38bdf8;">Aplicabilidad:</strong> Herramienta educativa para análisis de sistemas HVAC</li>
+            </ul>
+            <div style="background-color: #1e293b; padding: 1rem; border-left: 4px solid #10b981;">
+                <p style="color: #cbd5e1; font-size: 0.9rem;"><strong style="color: #10b981;">Fuente bibliográfica:</strong></p>
+                <p style="color: #94a3b8; font-size: 0.8rem;">Artículos de Ingeniería Térmica y Refrigeración por Compresión - UPC Doctorat</p>
+                <p style="color: #94a3b8; font-size: 0.75rem;">Doctorat.upc.edu/es/programas/ingenieria-termica</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 6: JUSTIFICACIÓN DEL PRODUCTO - PARTE 2 -->
+    <section class="slide p-16 col" style="background-color: #0f172a; color: #f1f5f9;">
+        <h2 class="mb-4" style="color: #38bdf8;">Justificación: Números Complejos en Potencia Eléctrica</h2>
+        <div class="fill-height">
+            <h3 class="mb-3" style="color: #cbd5e1; font-size: 1.1rem;">¿Por qué números complejos?</h3>
+            <ul class="text-lg" style="color: #cbd5e1; margin-bottom: 1rem;">
+                <li><strong style="color: #38bdf8;">Potencia Real (P):</strong> Parte real del número complejo (Watts)</li>
+                <li><strong style="color: #38bdf8;">Potencia Reactiva (Q):</strong> Parte imaginaria (VAR)</li>
+                <li><strong style="color: #38bdf8;">Potencia Aparente (S):</strong> Magnitud del número complejo (VA)</li>
+            </ul>
+            <div style="background-color: #1e293b; padding: 1rem; border-left: 4px solid #f59e0b; margin-bottom: 0.8rem;">
+                <p style="color: #cbd5e1;"><strong style="color: #f59e0b;">Fórmula:</strong> S = P + jQ = 1496 + j935 VA</p>
+            </div>
+            <div style="background-color: #1e293b; padding: 0.8rem; border-left: 4px solid #10b981; font-size: 0.85rem;">
+                <p style="color: #cbd5e1;"><strong style="color: #10b981;">Fuentes citadas:</strong></p>
+                <p style="color: #94a3b8;">• Números Complejos en Ingeniería - CourseHero.com</p>
+                <p style="color: #94a3b8;">• Aplicaciones de Números Complejos - SlideShare 2013</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 7: PRESENTACIÓN DEL PRODUCTO FINAL -->
+    <section class="slide p-16 col" style="background-color: #0f172a; color: #f1f5f9;">
+        <h2 class="mb-4" style="color: #38bdf8;">Producto Final: Modelo y Simulación</h2>
+        <div style="display: flex; gap: 1.5rem; height: 100%;">
+            <!-- Componentes -->
+            <div style="flex: 0 0 45%;">
+                <h3 class="mb-3" style="color: #cbd5e1; font-size: 1.1rem;">Componentes Desarrollados</h3>
+                <div style="background-color: #1e293b; padding: 1rem; margin-bottom: 0.8rem;">
+                    <p style="color: #38bdf8; font-weight: bold; margin-bottom: 0.4rem;">1. Modelo Térmico</p>
+                    <p style="color: #cbd5e1; font-size: 0.9rem;">T(t) = 5 + 0.4t (apertura)</p>
+                    <p style="color: #cbd5e1; font-size: 0.9rem;">T(t) = 7 - 0.35t (cierre)</p>
+                </div>
+                <div style="background-color: #1e293b; padding: 1rem; margin-bottom: 0.8rem;">
+                    <p style="color: #38bdf8; font-weight: bold; margin-bottom: 0.4rem;">2. Análisis Eléctrico</p>
+                    <p style="color: #cbd5e1; font-size: 0.9rem;">P = 1496 W</p>
+                    <p style="color: #cbd5e1; font-size: 0.9rem;">S = 1496 + j935 VA</p>
+                </div>
+                <div style="background-color: #1e293b; padding: 1rem;">
+                    <p style="color: #38bdf8; font-weight: bold; margin-bottom: 0.4rem;">3. Optimización</p>
+                    <p style="color: #cbd5e1; font-size: 0.9rem;">Ahorro energético: 38%</p>
+                </div>
+            </div>
+            <!-- Gráfico de simulación -->
+            <div style="flex: 1;">
+                <svg viewBox="0 0 350 280" style="width: 100%; height: 100%;">
+                    <!-- Grid -->
+                    <defs>
+                        <pattern id="grid" width="35" height="28" patternUnits="userSpaceOnUse">
+                            <path d="M 35 0 L 0 0 0 28" fill="none" stroke="#334155" stroke-width="0.5"></path>
+                        </pattern>
+                    </defs>
+                    <rect width="350" height="280" fill="url(#grid)"></rect>
+                    <!-- Axes -->
+                    <line x1="40" y1="240" x2="340" y2="240" stroke="#cbd5e1" stroke-width="2"></line>
+                    <line x1="40" y1="20" x2="40" y2="240" stroke="#cbd5e1" stroke-width="2"></line>
+                    <!-- Labels -->
+                    <text x="320" y="258" font-size="12" fill="#94a3b8">t (min)</text>
+                    <text x="12" y="30" font-size="12" fill="#94a3b8">T(°C)</text>
+                    <!-- Ticks -->
+                    <text x="35" y="258" font-size="10" fill="#94a3b8">0</text>
+                    <text x="125" y="258" font-size="10" fill="#94a3b8">10</text>
+                    <text x="215" y="258" font-size="10" fill="#94a3b8">20</text>
+                    <text x="305" y="258" font-size="10" fill="#94a3b8">30</text>
+                    <text x="20" y="245" font-size="10" fill="#94a3b8">5</text>
+                    <text x="20" y="165" font-size="10" fill="#94a3b8">7</text>
+                    <!-- Tramo 1 -->
+                    <polyline points="40,240 90,220 140,200 190,180 240,160" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round"></polyline>
+                    <!-- Tramo 2 -->
+                    <polyline points="240,160 260,152 280,144 300,136 320,128" fill="none" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round"></polyline>
+                    <!-- Legend -->
+                    <line x1="250" y1="30" x2="270" y2="30" stroke="#ef4444" stroke-width="2.5"></line>
+                    <text x="280" y="35" font-size="11" fill="#cbd5e1">Abierta</text>
+                    <line x1="250" y1="50" x2="270" y2="50" stroke="#38bdf8" stroke-width="2.5"></line>
+                    <text x="280" y="55" font-size="11" fill="#cbd5e1">Cerrada</text>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 8: ESQUEMA RESUMEN DE NOCIONES MATEMÁTICAS -->
+    <section class="slide p-16 col" style="background-color: #0f172a; color: #f1f5f9;">
+        <h2 class="mb-6" style="color: #38bdf8;">Esquema Resumen: Nociones Matemáticas Utilizadas</h2>
+        <div style="display: flex; gap: 1rem; justify-content: space-around; align-items: center; height: 100%;">
+            <!-- Función Lineal -->
+            <div style="background-color: #1e293b; padding: 1.2rem; text-align: center; flex: 1;">
+                <h3 style="color: #38bdf8; margin-bottom: 0.8rem;">Funciones Lineales</h3>
+                <p style="color: #cbd5e1; font-size: 0.9rem; margin-bottom: 0.6rem;">f(x) = mx + b</p>
+                <p style="color: #94a3b8; font-size: 0.8rem;">Modelo de temperatura</p>
+            </div>
+            <!-- Flecha -->
+            <div style="color: #38bdf8; font-size: 2rem;">→</div>
+            <!-- Números Complejos -->
+            <div style="background-color: #1e293b; padding: 1.2rem; text-align: center; flex: 1;">
+                <h3 style="color: #38bdf8; margin-bottom: 0.8rem;">Números Complejos</h3>
+                <p style="color: #cbd5e1; font-size: 0.9rem; margin-bottom: 0.6rem;">z = a + bi</p>
+                <p style="color: #94a3b8; font-size: 0.8rem;">Análisis de potencia</p>
+            </div>
+            <!-- Flecha -->
+            <div style="color: #38bdf8; font-size: 2rem;">→</div>
+            <!-- Optimización -->
+            <div style="background-color: #1e293b; padding: 1.2rem; text-align: center; flex: 1;">
+                <h3 style="color: #38bdf8; margin-bottom: 0.8rem;">Optimización</h3>
+                <p style="color: #cbd5e1; font-size: 0.9rem; margin-bottom: 0.6rem;">Minimizar E = P·t</p>
+                <p style="color: #94a3b8; font-size: 0.8rem;">Ahorro energético</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 9: CONCLUSIONES Y REFLEXIONES -->
+    <section class="slide p-16 col" style="background-color: #0f172a; color: #f1f5f9;">
+        <h2 class="mb-6" style="color: #38bdf8;">Conclusiones y Reflexiones</h2>
+        <div class="fill-height">
+            <h3 class="mb-3" style="color: #cbd5e1; font-size: 1.1rem;">Conclusiones</h3>
+            <ul class="text-lg" style="color: #cbd5e1; margin-bottom: 1.5rem;">
+                <li>Modelo lineal describe efectivamente ciclos térmicos cortos</li>
+                <li>Números complejos son herramientas esenciales en análisis eléctrico</li>
+                <li>Aperturas de puerta son factor crítico en consumo energético</li>
+            </ul>
+            <h3 class="mb-3" style="color: #cbd5e1; font-size: 1.1rem;">Reflexiones Académicas</h3>
+            <ul class="text-lg" style="color: #cbd5e1;">
+                <li>Integración exitosa de conceptos matemáticos en contexto industrial real</li>
+                <li>Metodología colaborativa permitió perspectivas complementarias</li>
+                <li>Aplicabilidad inmediata del conocimiento a problemas prácticos</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- SLIDE 10: MAPA DE IMPACTO EN TFL -->
+    <section class="slide p-16 col" style="background-color: #0f172a; color: #f1f5f9;">
+        <h2 class="mb-4" style="color: #38bdf8;">Mapa de Impacto: Competencias Desarrolladas en TFL</h2>
+        <div style="display: flex; gap: 1.2rem; justify-content: space-around; flex-wrap: wrap; height: 100%; align-content: space-around;">
+            <!-- Competencia 1 -->
+            <div style="background-color: #1e293b; padding: 1rem; border-left: 4px solid #38bdf8; flex: 0 1 45%;">
+                <h3 style="color: #38bdf8; font-size: 0.95rem; margin-bottom: 0.5rem;">Números Complejos</h3>
+                <p style="color: #cbd5e1; font-size: 0.85rem;">Dominio en representación cartesiana y polar. Aplicación a potencia compleja en circuitos.</p>
+            </div>
+            <!-- Competencia 2 -->
+            <div style="background-color: #1e293b; padding: 1rem; border-left: 4px solid #10b981; flex: 0 1 45%;">
+                <h3 style="color: #10b981; font-size: 0.95rem; margin-bottom: 0.5rem;">Modelos Matemáticos Lineales</h3>
+                <p style="color: #cbd5e1; font-size: 0.85rem;">Desarrollo de funciones por tramos. Análisis de comportamiento de sistemas.</p>
+            </div>
+            <!-- Competencia 3 -->
+            <div style="background-color: #1e293b; padding: 1rem; border-left: 4px solid #f59e0b; flex: 0 1 45%;">
+                <h3 style="color: #f59e0b; font-size: 0.95rem; margin-bottom: 0.5rem;">Investigación Aplicada</h3>
+                <p style="color: #cbd5e1; font-size: 0.85rem;">Búsqueda de fuentes, análisis crítico y síntesis de información técnica.</p>
+            </div>
+            <!-- Competencia 4 -->
+            <div style="background-color: #1e293b; padding: 1rem; border-left: 4px solid #ec4899; flex: 0 1 45%;">
+                <h3 style="color: #ec4899; font-size: 0.95rem; margin-bottom: 0.5rem;">Trabajo Colaborativo</h3>
+                <p style="color: #cbd5e1; font-size: 0.85rem;">Distribución equitativa de tareas. Integración de perspectivas complementarias.</p>
+            </div>
+        </div>
+        <div style="background-color: #1e293b; padding: 0.8rem; margin-top: 1rem; border-left: 4px solid #10b981; font-size: 0.8rem;">
+            <p style="color: #cbd5e1;"><strong style="color: #10b981;">Consulta académica:</strong> Prof. José Muñoz - Carrera Ingeniería en Climatización y Refrigeración</p>
+        </div>
+    </section>
+
+    <!-- SLIDE 5: JUSTIFICACIÓN DEL PRODUCTO - PARTE 1 (REVISADA) -->
+    <section class="slide p-16 col" style="background-color: #0f172a; color: #f1f5f9;">
+        <h2 class="mb-4" style="color: #38bdf8;">Justificación: Modelo Matemático Lineal</h2>
+        <div class="fill-height">
+            <h3 class="mb-3" style="color: #cbd5e1; font-size: 1.1rem;">¿Por qué un modelo lineal por tramos?</h3>
+            <ul class="text-lg" style="color: #cbd5e1; margin-bottom: 1rem;">
+                <li><strong style="color: #38bdf8;">Simplicidad:</strong> Aproximación efectiva del comportamiento real durante ciclos cortos</li>
+                <li><strong style="color: #38bdf8;">Precisión:</strong> Captura transiciones térmicas clave (apertura/cierre puerta)</li>
+                <li><strong style="color: #38bdf8;">Aplicabilidad:</strong> Herramienta educativa para análisis de sistemas HVAC</li>
+            </ul>
+            <div style="background-color: #1e293b; padding: 1rem; border-left: 4px solid #10b981;">
+                <p style="color: #cbd5e1; font-size: 0.9rem;"><strong style="color: #10b981;">Fuente bibliográfica:</strong></p>
+                <p style="color: #94a3b8; font-size: 0.8rem;">Artículos de Ingeniería Térmica y Refrigeración por Compresión de Vapor - UPC Doctorat</p>
+                <p style="color: #94a3b8; font-size: 0.75rem;">Doctorat.upc.edu/es/programas/ingenieria-termica</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 5B: DESARROLLO - MODELO TÉRMICO CON GRÁFICO -->
+    <section class="slide p-16 col" style="background-color: #0f172a; color: #f1f5f9;">
+        <h2 class="mb-4" style="color: #38bdf8;">Desarrollo: Modelo Térmico</h2>
+        <div style="display: flex; gap: 1.5rem; height: 100%; align-items: stretch;">
+            <!-- Fórmulas -->
+            <div style="flex: 0 0 40%;">
+                <p class="text-sm mb-3" style="color: #cbd5e1;">Ecuaciones lineales por tramos:</p>
+                <div style="background-color: #1e293b; padding: 0.9rem; margin-bottom: 0.8rem; border-radius: 4px;">
+                    <p style="color: #38bdf8; font-weight: bold; font-size: 0.85rem;">Tramo 1 (Puerta Abierta)</p>
+                    <p style="color: #cbd5e1; font-family: monospace; font-size: 0.8rem; margin-bottom: 0.4rem;">T(t) = 5 + 0.4t</p>
+                    <p style="color: #94a3b8; font-size: 0.75rem; line-height: 1.3;">
+                        <strong>T:</strong> Temperatura (°C)<br>
+                        <strong>t:</strong> Tiempo (min)<br>
+                        <strong>5:</strong> T° inicial (5°C)<br>
+                        <strong>0.4:</strong> Tasa de aumento (°C/min)
+                    </p>
+                </div>
+                <div style="background-color: #1e293b; padding: 0.9rem;">
+                    <p style="color: #38bdf8; font-weight: bold; font-size: 0.85rem;">Tramo 2 (Puerta Cerrada)</p>
+                    <p style="color: #cbd5e1; font-family: monospace; font-size: 0.8rem; margin-bottom: 0.4rem;">T(t) = 7 - 0.35t</p>
+                    <p style="color: #94a3b8; font-size: 0.75rem; line-height: 1.3;">
+                        <strong>T:</strong> Temperatura (°C)<br>
+                        <strong>t:</strong> Tiempo (min)<br>
+                        <strong>7:</strong> T° máxima (7°C)<br>
+                        <strong>-0.35:</strong> Tasa de descenso (°C/min)
+                    </p>
+                </div>
+            </div>
+            <!-- Gráfico -->
+            <div style="flex: 1; position: relative;">
+                <svg viewBox="0 0 350 280" style="width: 100%; height: 100%;">
+                    <!-- Grid -->
+                    <defs>
+                        <pattern id="grid" width="35" height="28" patternUnits="userSpaceOnUse">
+                            <path d="M 35 0 L 0 0 0 28" fill="none" stroke="#334155" stroke-width="0.5"></path>
+                        </pattern>
+                    </defs>
+                    <rect width="350" height="280" fill="url(#grid)"></rect>
+                    <!-- Axes -->
+                    <line x1="40" y1="240" x2="340" y2="240" stroke="#cbd5e1" stroke-width="2"></line>
+                    <line x1="40" y1="20" x2="40" y2="240" stroke="#cbd5e1" stroke-width="2"></line>
+                    <!-- Axis labels -->
+                    <text x="320" y="258" font-size="12" fill="#94a3b8">Tiempo (min)</text>
+                    <text x="12" y="30" font-size="12" fill="#94a3b8">T(°C)</text>
+                    <!-- Tick marks and labels -->
+                    <text x="35" y="258" font-size="10" fill="#94a3b8">0</text>
+                    <text x="125" y="258" font-size="10" fill="#94a3b8">10</text>
+                    <text x="215" y="258" font-size="10" fill="#94a3b8">20</text>
+                    <text x="305" y="258" font-size="10" fill="#94a3b8">30</text>
+                    <text x="20" y="245" font-size="10" fill="#94a3b8">5</text>
+                    <text x="20" y="165" font-size="10" fill="#94a3b8">7</text>
+                    <text x="10" y="85" font-size="10" fill="#94a3b8">9</text>
+                    <!-- Tramo 1 (Puerta Abierta) - Red line -->
+                    <polyline points="40,240 90,220 140,200 190,180 240,160" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round"></polyline>
+                    <!-- Tramo 2 (Puerta Cerrada) - Blue line -->
+                    <polyline points="240,160 260,152 280,144 300,136 320,128" fill="none" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round"></polyline>
+                    <!-- Legend -->
+                    <line x1="250" y1="30" x2="270" y2="30" stroke="#ef4444" stroke-width="2.5"></line>
+                    <text x="280" y="35" font-size="11" fill="#cbd5e1">Abierta</text>
+                    <line x1="250" y1="50" x2="270" y2="50" stroke="#38bdf8" stroke-width="2.5"></line>
+                    <text x="280" y="55" font-size="11" fill="#cbd5e1">Cerrada</text>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 6: DESARROLLO - CONSUMO ELÉCTRICO CON GRÁFICO -->
+    <section class="slide p-16 col" style="background-color: #0f172a; color: #f1f5f9;">
+        <h2 class="mb-4" style="color: #38bdf8;">Desarrollo: Consumo Eléctrico</h2>
+        <div style="display: flex; gap: 1.5rem; height: 100%; align-items: stretch;">
+            <!-- Fórmulas -->
+            <div style="flex: 0 0 35%;">
+                <p class="text-sm mb-3" style="color: #cbd5e1;">Potencia Compleja:</p>
+                <div style="background-color: #1e293b; padding: 0.9rem; margin-bottom: 0.6rem;">
+                    <p style="color: #cbd5e1; font-size: 0.8rem; margin-bottom: 0.3rem;"><strong>P =</strong> 220V × 8A × 0.85</p>
+                    <p style="color: #38bdf8; font-weight: bold; font-size: 0.85rem; margin-bottom: 0.4rem;">1496 W</p>
+                    <p style="color: #94a3b8; font-size: 0.7rem; line-height: 1.3;">
+                        <strong>P:</strong> Potencia activa (W)<br>
+                        <strong>220V:</strong> Voltaje<br>
+                        <strong>8A:</strong> Corriente<br>
+                        <strong>0.85:</strong> Factor de potencia
+                    </p>
+                </div>
+                <div style="background-color: #1e293b; padding: 0.9rem; margin-bottom: 0.6rem;">
+                    <p style="color: #cbd5e1; font-size: 0.8rem; margin-bottom: 0.3rem;"><strong>Q ≈</strong> Potencia reactiva</p>
+                    <p style="color: #38bdf8; font-weight: bold; font-size: 0.85rem; margin-bottom: 0.4rem;">935 VAR</p>
+                    <p style="color: #94a3b8; font-size: 0.7rem; line-height: 1.3;">
+                        <strong>Q:</strong> Potencia reactiva (VAR)<br>
+                        <strong>VAR:</strong> Volt-Amperio Reactivo
+                    </p>
+                </div>
+                <div style="background-color: #1e293b; padding: 0.9rem;">
+                    <p style="color: #cbd5e1; font-size: 0.8rem; margin-bottom: 0.3rem;"><strong>S =</strong> Potencia aparente</p>
+                    <p style="color: #cbd5e1; font-family: monospace; font-size: 0.75rem; margin-bottom: 0.4rem;">1496 + j935 VA</p>
+                    <p style="color: #94a3b8; font-size: 0.7rem; line-height: 1.3;">
+                        <strong>S:</strong> Potencia aparente (VA)<br>
+                        <strong>j:</strong> Número imaginario
+                    </p>
+                </div>
+            </div>
+            <!-- Gráfico -->
+            <div style="flex: 1;">
+                <svg viewBox="0 0 320 280" style="width: 100%; height: 100%;">
+                    <!-- Grid -->
+                    <defs>
+                        <pattern id="grid2" width="32" height="28" patternUnits="userSpaceOnUse">
+                            <path d="M 32 0 L 0 0 0 28" fill="none" stroke="#334155" stroke-width="0.5"></path>
+                        </pattern>
+                    </defs>
+                    <rect width="320" height="280" fill="url(#grid2)"></rect>
+                    <!-- Axes -->
+                    <line x1="35" y1="240" x2="310" y2="240" stroke="#cbd5e1" stroke-width="2"></line>
+                    <line x1="35" y1="20" x2="35" y2="240" stroke="#cbd5e1" stroke-width="2"></line>
+                    <!-- Axis labels -->
+                    <text x="290" y="258" font-size="11" fill="#94a3b8">Tiempo (h)</text>
+                    <text x="5" y="30" font-size="11" fill="#94a3b8">E (kWh)</text>
+                    <!-- Tick marks -->
+                    <text x="30" y="258" font-size="9" fill="#94a3b8">0</text>
+                    <text x="110" y="258" font-size="9" fill="#94a3b8">8</text>
+                    <text x="190" y="258" font-size="9" fill="#94a3b8">16</text>
+                    <text x="270" y="258" font-size="9" fill="#94a3b8">24</text>
+                    <text x="22" y="245" font-size="9" fill="#94a3b8">0</text>
+                    <text x="15" y="165" font-size="9" fill="#94a3b8">12</text>
+                    <text x="15" y="85" font-size="9" fill="#94a3b8">24</text>
+                    <!-- Line E = P·t (1.496 kWh/h) -->
+                    <polyline points="35,240 85,209 135,178 185,147 235,116 285,85" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round"></polyline>
+                    <!-- Point markers -->
+                    <circle cx="35" cy="240" r="2.5" fill="#10b981"></circle>
+                    <circle cx="135" cy="178" r="2.5" fill="#10b981"></circle>
+                    <circle cx="235" cy="116" r="2.5" fill="#10b981"></circle>
+                    <circle cx="285" cy="85" r="2.5" fill="#10b981"></circle>
+                    <!-- Legend -->
+                    <rect x="245" y="20" width="60" height="50" fill="#1e293b" stroke="#334155" stroke-width="1"></rect>
+                    <line x1="255" y1="30" x2="275" y2="30" stroke="#10b981" stroke-width="2.5"></line>
+                    <text x="280" y="35" font-size="11" fill="#cbd5e1">E = P·t</text>
+                    <text x="255" y="50" font-size="9" fill="#94a3b8">Energía</text>
+                    <text x="255" y="63" font-size="9" fill="#94a3b8">consumida</text>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 7: DESARROLLO - CICLO COMPRESOR CON GRÁFICO Y EJEMPLO -->
+    <section class="slide p-16 col" style="background-color: #0f172a; color: #f1f5f9;">
+        <h2 class="mb-3" style="color: #38bdf8;">Desarrollo: Ciclo de Funcionamiento del Compresor</h2>
+        <!-- Ejemplo de cálculo -->
+        <div style="display: flex; gap: 1rem; margin-bottom: 0.8rem; font-size: 0.8rem;">
+            <div style="background-color: #1e293b; padding: 0.6rem; border-left: 3px solid #ef4444;">
+                <p style="color: #ef4444; font-weight: bold; margin-bottom: 0.2rem;">Ejemplo Tramo 1 (t=5 min):</p>
+                <p style="color: #cbd5e1;">T(5) = 5 + 0.4(5) = <strong>7°C</strong></p>
+            </div>
+            <div style="background-color: #1e293b; padding: 0.6rem; border-left: 3px solid #38bdf8;">
+                <p style="color: #38bdf8; font-weight: bold; margin-bottom: 0.2rem;">Ejemplo Tramo 2 (t=5 min):</p>
+                <p style="color: #cbd5e1;">T(5) = 7 - 0.35(5) = <strong>5.25°C</strong></p>
+            </div>
+        </div>
+        <svg viewBox="0 0 900 280" style="width: 100%; height: calc(100% - 50px);">
+            <!-- Grid -->
+            <defs>
+                <pattern id="grid3" width="45" height="32" patternUnits="userSpaceOnUse">
+                    <path d="M 45 0 L 0 0 0 32" fill="none" stroke="#334155" stroke-width="0.5"></path>
+                </pattern>
+            </defs>
+            <rect width="900" height="320" fill="url(#grid3)"></rect>
+            <!-- Axes -->
+            <line x1="50" y1="260" x2="850" y2="260" stroke="#cbd5e1" stroke-width="2"></line>
+            <line x1="50" y1="40" x2="50" y2="260" stroke="#cbd5e1" stroke-width="2"></line>
+            <!-- Axis labels -->
+            <text x="810" y="283" font-size="12" fill="#94a3b8">Tiempo (min)</text>
+            <text x="15" y="40" font-size="12" fill="#94a3b8">Estado</text>
+            <!-- Temperature line -->
+            <polyline points="50,200 150,120 250,200 350,200 450,120 550,200 650,200 750,120 850,200" fill="none" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round"></polyline>
+            <!-- Compressor ON/OFF blocks -->
+            <rect x="150" y="270" width="100" height="20" fill="#10b981" opacity="0.7"></rect>
+            <text x="160" y="283" font-size="10" fill="#0f172a" font-weight="bold">COMPRESOR ON</text>
+            <rect x="250" y="270" width="100" height="20" fill="#ef4444" opacity="0.7"></rect>
+            <text x="260" y="283" font-size="10" fill="#f1f5f9" font-weight="bold">COMPRESOR OFF</text>
+            <rect x="450" y="270" width="100" height="20" fill="#10b981" opacity="0.7"></rect>
+            <text x="460" y="283" font-size="10" fill="#0f172a" font-weight="bold">COMPRESOR ON</text>
+            <rect x="550" y="270" width="100" height="20" fill="#ef4444" opacity="0.7"></rect>
+            <text x="560" y="283" font-size="10" fill="#f1f5f9" font-weight="bold">COMPRESOR OFF</text>
+            <!-- Temperature scale -->
+            <text x="30" y="205" font-size="10" fill="#94a3b8">5°C</text>
+            <text x="25" y="125" font-size="10" fill="#94a3b8">7°C</text>
+            <!-- Time labels -->
+            <text x="140" y="305" font-size="10" fill="#94a3b8">5'</text>
+            <text x="240" y="305" font-size="10" fill="#94a3b8">10'</text>
+            <text x="340" y="305" font-size="10" fill="#94a3b8">15'</text>
+            <text x="440" y="305" font-size="10" fill="#94a3b8">20'</text>
+            <text x="540" y="305" font-size="10" fill="#94a3b8">25'</text>
+            <text x="640" y="305" font-size="10" fill="#94a3b8">30'</text>
+            <text x="740" y="305" font-size="10" fill="#94a3b8">35'</text>
+            <!-- Legend box -->
+            <rect x="700" y="50" width="130" height="70" fill="#1e293b" stroke="#334155" stroke-width="1"></rect>
+            <line x1="715" y1="65" x2="735" y2="65" stroke="#38bdf8" stroke-width="2.5"></line>
+            <text x="745" y="70" font-size="11" fill="#cbd5e1">Temperatura</text>
+            <rect x="715" y="80" width="15" height="15" fill="#10b981" opacity="0.7"></rect>
+            <text x="745" y="92" font-size="11" fill="#cbd5e1">Compresor ON</text>
+        </svg>
+    </section>
+
+    <!-- SLIDE 8: MEDIDAS DE MEJORAS -->
+    <section class="slide p-16 col" style="background-color: #0f172a; color: #f1f5f9;">
+        <h2 class="mb-6" style="color: #38bdf8;">Medidas de Mejora Preventivas</h2>
+        <div class="fill-height">
+            <ul class="text-lg" style="color: #cbd5e1;">
+                <li><strong style="color: #38bdf8;">Reducir aperturas:</strong> Optimizar procedimientos de acceso</li>
+                <li><strong style="color: #38bdf8;">Cortinas de PVC:</strong> Aislar ingreso de aire externo</li>
+                <li><strong style="color: #38bdf8;">Revisar set point:</strong> Aumentar a 6°C si es operacionalmente viable</li>
+                <li><strong style="color: #38bdf8;">Mantenimiento:</strong> Verificar integridad de sellos y aislamiento</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- SLIDE 9: COMPARATIVA ANTES Y DESPUÉS -->
+    <section class="slide p-16 col" style="background-color: #0f172a; color: #f1f5f9;">
+        <h2 class="mb-3" style="color: #38bdf8;">Comparativa: Antes vs. Después de Medidas</h2>
+        <!-- Cálculos de energía consumida -->
+        <div style="display: flex; gap: 1rem; margin-bottom: 0.6rem; font-size: 0.75rem;">
+            <div style="background-color: #1e293b; padding: 0.5rem; border-left: 3px solid #ef4444; flex: 1;">
+                <p style="color: #ef4444; font-weight: bold;">ANTES - E = P·t</p>
+                <p style="color: #cbd5e1;">E = 1.496 kW × 30h = <strong>44.88 kWh</strong></p>
+            </div>
+            <div style="background-color: #1e293b; padding: 0.5rem; border-left: 3px solid #10b981; flex: 1;">
+                <p style="color: #10b981; font-weight: bold;">DESPUÉS - E = P·t</p>
+                <p style="color: #cbd5e1;">E = 0.93 kW × 30h = <strong>27.9 kWh</strong></p>
+            </div>
+        </div>
+        <svg viewBox="0 0 920 280" style="width: 100%; height: calc(100% - 50px);">
+            <!-- Grid -->
+            <defs>
+                <pattern id="grid4" width="46" height="32" patternUnits="userSpaceOnUse">
+                    <path d="M 46 0 L 0 0 0 32" fill="none" stroke="#334155" stroke-width="0.5"></path>
+                </pattern>
+            </defs>
+            <rect width="920" height="320" fill="url(#grid4)"></rect>
+            
+            <!-- LEFT SIDE: ANTES (BEFORE) -->
+            <text x="180" y="25" font-size="14" fill="#ef4444" font-weight="bold">ANTES (Sin Medidas)</text>
+            
+            <!-- Axes ANTES -->
+            <line x1="50" y1="260" x2="350" y2="260" stroke="#cbd5e1" stroke-width="1.5"></line>
+            <line x1="50" y1="40" x2="50" y2="260" stroke="#cbd5e1" stroke-width="1.5"></line>
+            
+            <!-- Temperature line ANTES - Oscilaciones grandes -->
+            <polyline points="50,180 80,80 110,180 140,180 170,80 200,180 230,180 260,80 290,180 320,180" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round"></polyline>
+            
+            <!-- Compressor blocks ANTES - Muchos ciclos -->
+            <rect x="80" y="270" width="25" height="15" fill="#10b981" opacity="0.6"></rect>
+            <rect x="110" y="270" width="25" height="15" fill="#ef4444" opacity="0.6"></rect>
+            <rect x="140" y="270" width="25" height="15" fill="#10b981" opacity="0.6"></rect>
+            <rect x="170" y="270" width="25" height="15" fill="#ef4444" opacity="0.6"></rect>
+            <rect x="200" y="270" width="25" height="15" fill="#10b981" opacity="0.6"></rect>
+            <rect x="230" y="270" width="25" height="15" fill="#ef4444" opacity="0.6"></rect>
+            <rect x="260" y="270" width="25" height="15" fill="#10b981" opacity="0.6"></rect>
+            <rect x="290" y="270" width="25" height="15" fill="#ef4444" opacity="0.6"></rect>
+            
+            <!-- Labels ANTES -->
+            <text x="40" y="85" font-size="9" fill="#94a3b8">8°C</text>
+            <text x="40" y="185" font-size="9" fill="#94a3b8">5°C</text>
+            <text x="120" y="305" font-size="8" fill="#94a3b8">Tiempo</text>
+            
+            <!-- Stats ANTES -->
+            <rect x="60" y="300" width="280" height="1" fill="#334155"></rect>
+            <text x="70" y="320" font-size="10" fill="#cbd5e1">Ciclos/hora: <tspan fill="#ef4444">12-15</tspan></text>
+            <text x="200" y="320" font-size="10" fill="#cbd5e1">Consumo: <tspan fill="#ef4444">~45 kWh/día</tspan></text>
+            
+            <!-- RIGHT SIDE: DESPUÉS (AFTER) -->
+            <text x="620" y="25" font-size="14" fill="#10b981" font-weight="bold">DESPUÉS (Con Medidas)</text>
+            
+            <!-- Axes DESPUÉS -->
+            <line x1="530" y1="260" x2="830" y2="260" stroke="#cbd5e1" stroke-width="1.5"></line>
+            <line x1="530" y1="40" x2="530" y2="260" stroke="#cbd5e1" stroke-width="1.5"></line>
+            
+            <!-- Temperature line DESPUÉS - Oscilaciones menores -->
+            <polyline points="530,210 560,130 590,210 620,210 650,130 680,210 710,210 740,130 770,210 800,210" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round"></polyline>
+            
+            <!-- Compressor blocks DESPUÉS - Menos ciclos -->
+            <rect x="560" y="270" width="28" height="15" fill="#10b981" opacity="0.6"></rect>
+            <rect x="590" y="270" width="28" height="15" fill="#ef4444" opacity="0.6"></rect>
+            <rect x="650" y="270" width="28" height="15" fill="#10b981" opacity="0.6"></rect>
+            <rect x="680" y="270" width="28" height="15" fill="#ef4444" opacity="0.6"></rect>
+            <rect x="740" y="270" width="28" height="15" fill="#10b981" opacity="0.6"></rect>
+            <rect x="770" y="270" width="28" height="15" fill="#ef4444" opacity="0.6"></rect>
+            
+            <!-- Labels DESPUÉS -->
+            <text x="520" y="135" font-size="9" fill="#94a3b8">6.5°C</text>
+            <text x="520" y="215" font-size="9" fill="#94a3b8">5°C</text>
+            <text x="600" y="305" font-size="8" fill="#94a3b8">Tiempo</text>
+            
+            <!-- Stats DESPUÉS -->
+            <rect x="540" y="300" width="280" height="1" fill="#334155"></rect>
+            <text x="550" y="320" font-size="10" fill="#cbd5e1">Ciclos/hora: <tspan fill="#10b981">8-10</tspan></text>
+            <text x="680" y="320" font-size="10" fill="#cbd5e1">Consumo: <tspan fill="#10b981">~28 kWh/día</tspan></text>
+            
+            <!-- Separador vertical -->
+            <line x1="460" y1="30" x2="460" y2="290" stroke="#334155" stroke-width="2" stroke-dasharray="5,5"></line>
+            
+            <!-- Improvement indicator - DESPUÉS section -->
+            <rect x="780" y="100" width="90" height="80" fill="#1e293b" stroke="#10b981" stroke-width="2" rx="4"></rect>
+            <text x="815" y="120" font-size="13" fill="#10b981" font-weight="bold" text-anchor="middle">AHORRO</text>
+            <text x="815" y="145" font-size="18" fill="#10b981" font-weight="bold" text-anchor="middle">38%</text>
+            <text x="815" y="165" font-size="10" fill="#cbd5e1" text-anchor="middle">Energía</text>
+            <text x="815" y="175" font-size="10" fill="#cbd5e1" text-anchor="middle">consumida</text>
+        </svg>
+    </section>
+
+    <!-- SLIDE 10: DIAGRAMA DE PLANO COMPLEJO - NUEVA DIAPOSITIVA -->
+    <section class="slide p-16 col" style="background-color: #0f172a; color: #f1f5f9;">
+        <h2 class="mb-4" style="color: #38bdf8;">Números Complejos: Representación en Plano</h2>
+        <div style="display: flex; gap: 1.5rem; height: 100%; align-items: center;">
+            <!-- Información -->
+            <div style="flex: 0 0 40%;">
+                <div style="background-color: #1e293b; padding: 1rem; margin-bottom: 0.8rem;">
+                    <p style="color: #38bdf8; font-weight: bold; margin-bottom: 0.4rem;">Número Complejo</p>
+                    <p style="color: #cbd5e1; font-family: monospace; font-size: 0.9rem;">S = 1496 + j935 VA</p>
+                </div>
+                <div style="background-color: #1e293b; padding: 1rem; margin-bottom: 0.8rem;">
+                    <p style="color: #38bdf8; font-weight: bold; margin-bottom: 0.4rem;">Módulo (Magnitud)</p>
+                    <p style="color: #cbd5e1; font-family: monospace; font-size: 0.9rem;">|S| = √(1496² + 935²)</p>
+                    <p style="color: #10b981; font-weight: bold; font-size: 0.9rem;">|S| = 1754 VA</p>
+                </div>
+                <div style="background-color: #1e293b; padding: 1rem;">
+                    <p style="color: #38bdf8; font-weight: bold; margin-bottom: 0.4rem;">Argumento (Ángulo)</p>
+                    <p style="color: #cbd5e1; font-family: monospace; font-size: 0.9rem;">φ = arctan(Q/P)</p>
+                    <p style="color: #10b981; font-weight: bold; font-size: 0.9rem;">φ = 32.2°</p>
+                </div>
+            </div>
+            <!-- Plano Complejo -->
+            <div style="flex: 1;">
+                <svg viewBox="0 0 320 320" style="width: 100%; height: 100%;">
+                    <!-- Grid -->
+                    <defs>
+                        <pattern id="gridcomplex" width="20" height="20" patternUnits="userSpaceOnUse">
+                            <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#334155" stroke-width="0.5"></path>
+                        </pattern>
+                    </defs>
+                    <rect width="320" height="320" fill="url(#gridcomplex)"></rect>
+                    <!-- Axes -->
+                    <line x1="20" y1="160" x2="300" y2="160" stroke="#cbd5e1" stroke-width="2"></line>
+                    <line x1="160" y1="20" x2="160" y2="300" stroke="#cbd5e1" stroke-width="2"></line>
+                    <!-- Axis labels -->
+                    <text x="290" y="148" font-size="12" fill="#94a3b8">Re (P)</text>
+                    <text x="165" y="20" font-size="12" fill="#94a3b8">Im (Q)</text>
+                    <!-- Vector -->
+                    <line x1="160" y1="160" x2="260" y2="70" stroke="#38bdf8" stroke-width="3"></line>
+                    <!-- Point -->
+                    <circle cx="260" cy="70" r="4" fill="#38bdf8"></circle>
+                    <!-- Angle arc -->
+                    <path d="M 200 160 A 40 40 0 0 0 239 95" fill="none" stroke="#f59e0b" stroke-width="2" stroke-dasharray="3,3"></path>
+                    <!-- Projections -->
+                    <line x1="260" y1="160" x2="260" y2="70" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="2,2"></line>
+                    <line x1="160" y1="70" x2="260" y2="70" stroke="#10b981" stroke-width="1.5" stroke-dasharray="2,2"></line>
+                    <!-- Labels -->
+                    <text x="260" y="180" font-size="11" fill="#ef4444" text-anchor="middle">P = 1496 W</text>
+                    <text x="120" y="60" font-size="11" fill="#10b981" text-anchor="middle">Q = 935 VAR</text>
+                    <text x="210" y="135" font-size="11" fill="#f59e0b">φ = 32.2°</text>
+                    <!-- Magnitude label -->
+                    <text x="220" y="100" font-size="12" fill="#38bdf8" font-weight="bold">|S| = 1754 VA</text>
+                    <!-- Quadrants -->
+                    <text x="280" y="30" font-size="9" fill="#94a3b8" opacity="0.5">I</text>
+                    <text x="45" y="30" font-size="9" fill="#94a3b8" opacity="0.5">II</text>
+                    <text x="45" y="305" font-size="9" fill="#94a3b8" opacity="0.5">III</text>
+                    <text x="280" y="305" font-size="9" fill="#94a3b8" opacity="0.5">IV</text>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 11: CONCLUSIÓN (RENUMERADA) -->
+    <section class="slide p-16 col" style="background-color: #0f172a; color: #f1f5f9;">
+        <h2 class="mb-8" style="color: #38bdf8;">Conclusión</h2>
+        <div class="fill-height">
+            <ul class="text-lg" style="color: #cbd5e1;">
+                <li>El modelo lineal por tramos describe efectivamente la operación</li>
+                <li>Números complejos permiten evaluar consumo eléctrico con precisión</li>
+                <li>Aperturas de puerta son factor crítico de energía consumida</li>
+                <li>Implementar medidas preventivas reducirá costos operacionales</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- SLIDE 12: CONCLUSIONES Y REFLEXIONES -->
+    <section class="slide p-16 col" style="background-color: #0f172a; color: #f1f5f9;">
+        <h2 class="mb-6" style="color: #38bdf8;">Conclusiones y Reflexiones</h2>
+        <div class="fill-height">
+            <h3 class="mb-3" style="color: #cbd5e1; font-size: 1.1rem;">Conclusiones Académicas</h3>
+            <ul class="text-lg" style="color: #cbd5e1; margin-bottom: 1.5rem;">
+                <li>Integración exitosa de conceptos matemáticos en contexto industrial real</li>
+                <li>Metodología colaborativa permitió perspectivas complementarias</li>
+                <li>Aplicabilidad inmediata del conocimiento a problemas prácticos</li>
+            </ul>
+            <h3 class="mb-3" style="color: #cbd5e1; font-size: 1.1rem;">Aprendizajes Clave</h3>
+            <ul class="text-lg" style="color: #cbd5e1;">
+                <li>Números complejos son herramientas potentes, no solo abstractas</li>
+                <li>Los modelos matemáticos resuelven problemas reales en refrigeración</li>
+                <li>La colaboración equitativa optimiza el resultado y el aprendizaje</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- SLIDE 13: MAPA DE IMPACTO EN TFL -->
+    <section class="slide p-16 col" style="background-color: #0f172a; color: #f1f5f9;">
+        <h2 class="mb-4" style="color: #38bdf8;">Mapa de Impacto: Competencias Desarrolladas en TFL</h2>
+        <div style="display: flex; gap: 1.2rem; justify-content: space-around; flex-wrap: wrap; height: 100%; align-content: space-around;">
+            <!-- Competencia 1 -->
+            <div style="background-color: #1e293b; padding: 1rem; border-left: 4px solid #38bdf8; flex: 0 1 45%;">
+                <h3 style="color: #38bdf8; font-size: 0.95rem; margin-bottom: 0.5rem;">Números Complejos</h3>
+                <p style="color: #cbd5e1; font-size: 0.85rem;">Dominio en representación cartesiana y polar. Aplicación a potencia compleja en circuitos.</p>
+            </div>
+            <!-- Competencia 2 -->
+            <div style="background-color: #1e293b; padding: 1rem; border-left: 4px solid #10b981; flex: 0 1 45%;">
+                <h3 style="color: #10b981; font-size: 0.95rem; margin-bottom: 0.5rem;">Modelos Matemáticos Lineales</h3>
+                <p style="color: #cbd5e1; font-size: 0.85rem;">Desarrollo de funciones por tramos. Análisis de comportamiento de sistemas.</p>
+            </div>
+            <!-- Competencia 3 -->
+            <div style="background-color: #1e293b; padding: 1rem; border-left: 4px solid #f59e0b; flex: 0 1 45%;">
+                <h3 style="color: #f59e0b; font-size: 0.95rem; margin-bottom: 0.5rem;">Investigación Aplicada</h3>
+                <p style="color: #cbd5e1; font-size: 0.85rem;">Búsqueda de fuentes, análisis crítico y síntesis de información técnica.</p>
+            </div>
+            <!-- Competencia 4 -->
+            <div style="background-color: #1e293b; padding: 1rem; border-left: 4px solid #ec4899; flex: 0 1 45%;">
+                <h3 style="color: #ec4899; font-size: 0.95rem; margin-bottom: 0.5rem;">Trabajo Colaborativo</h3>
+                <p style="color: #cbd5e1; font-size: 0.85rem;">Distribución equitativa de tareas. Integración de perspectivas complementarias.</p>
+            </div>
+        </div>
+        <div style="background-color: #1e293b; padding: 0.8rem; margin-top: 1rem; border-left: 4px solid #10b981; font-size: 0.8rem;">
+            <p style="color: #cbd5e1;"><strong style="color: #10b981;">Consulta académica:</strong> Prof. José Muñoz - Carrera Ingeniería en Climatización y Refrigeración</p>
+        </div>
+    </section>
+
+    <!-- SLIDE 14: BIBLIOGRAFÍA -->
+    <section class="slide p-16 col" style="background-color: #0f172a; color: #f1f5f9;">
+        <h2 class="mb-4" style="color: #38bdf8;">Bibliografía y Fuentes</h2>
+        <div class="fill-height" style="font-size: 0.8rem; line-height: 1.6; overflow-y: auto;">
+            <h3 class="mb-2" style="color: #cbd5e1; font-size: 1rem;">Referencias Formales</h3>
+            <p style="color: #94a3b8; margin-bottom: 0.6rem;"><strong style="color: #38bdf8;">[1]</strong> Escuela de Doctorado UPC (2020). <strong>Ingeniería Térmica</strong>. Programas de Refrigeración por Compresión de Vapor.<br><span style="color: #cbd5e1;">Doctorat.upc.edu/es/programas/ingenieria-termica</span></p>
+            <p style="color: #94a3b8; margin-bottom: 0.6rem;"><strong style="color: #38bdf8;">[2]</strong> Articae (2022). <strong>5 Medidas de Ahorro y Eficiencia Energética en Cámaras Frigoríficas</strong>.<br><span style="color: #cbd5e1;">articae.com/2022/10/04/5-medidas-de-ahorro</span></p>
+            <p style="color: #94a3b8; margin-bottom: 0.6rem;"><strong style="color: #38bdf8;">[3]</strong> Squair Blog (2025). <strong>6 Tips para Eficiencia Energética en Cámaras Frigoríficas</strong>.<br><span style="color: #cbd5e1;">blog.squair.io/es/6-consejos-eficiencia</span></p>
+            <p style="color: #94a3b8; margin-bottom: 0.6rem;"><strong style="color: #38bdf8;">[4]</strong> SlideShare (2013). <strong>Aplicaciones de los Números Complejos a la Ingeniería</strong>.<br><span style="color: #cbd5e1;">es.slideshare.net/slideshow/trabajo-27384868</span></p>
+            <p style="color: #94a3b8; margin-bottom: 0.6rem;"><strong style="color: #38bdf8;">[5]</strong> CourseHero (2017). <strong>Números Complejos en las Ingenierías</strong>.<br><span style="color: #cbd5e1;">coursehero.com/es/file/23306283</span></p>
+            <p style="color: #94a3b8;"><strong style="color: #38bdf8;">[6]</strong> Prof. <strong>José Muñoz</strong> - Carrera de Ingeniería en Climatización y Refrigeración (Consulta directa - Noviembre 2025)</p>
+        </div>
+    </section>
+
+    <!-- SLIDE 15: GRACIAS -->
+    <section class="slide p-16 col center" style="background-color: #020617; color: #f1f5f9;">
+        <h2 class="text-5xl mb-6" style="color: #38bdf8;">¡Gracias!</h2>
+        <p class="text-xl mb-8" style="color: #cbd5e1;">Preguntas</p>
+        <p class="text-sm" style="color: #94a3b8;">Análisis y Optimización de Cámara de Frío</p>
+        <p class="text-sm mt-8" style="color: #94a3b8;">Juan • Leonardo • Eduardo • Rodrigo</p>
+    </section>
+
+
+
+</body></html>
